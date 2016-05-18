@@ -1,0 +1,148 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<!--
+An element providing a way to page through elasticsearch results. Works with 
+elastic-client-search. 
+
+Example:
+
+    <pagination-dropdown current-page="{{pageNum}}" 
+      num-results="{{resultCount}}" 
+      results-per-page="{{pageSize}}">
+    </pagination-dropdown>
+
+@element pagination-dropdown
+@demo demo/index.html
+-->
+<dom-module id="pagination-dropdown">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        --paper-input-container-input-color: #727272;
+        --paper-input-container-focus-color: #727272;
+      }
+    </style>
+    <template is="dom-if" if="[[_hasPages]]">
+      <label>Go to page:</label>
+      <paper-dropdown-menu>
+        <paper-menu class="dropdown-content" attr-for-selected="value" selected="{{currentPage}}">
+          <template is="dom-repeat" items="[[_pages]]">
+            <paper-item value="[[item]]">[[item]]</paper-item>
+          </template> 
+        </paper-menu>
+      </paper-dropdown-menu>
+    </template>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'pagination-dropdown',
+
+    properties: {
+      /**
+       * Current page of results returned from elasticsearch query performed 
+       * in elastic-client-search (corresponds to elastic-client-search's 
+       * page property).
+       */
+      currentPage: {
+        type: Number,
+        value: 1,
+        notify: true
+      },
+      /**
+       * Number of results returned from elasticsearch query.
+       */
+      numResults: {
+        type: Number,
+        notify: true
+      },
+      /**
+       * Page size of elasticsearch query (corresponds to elastic-client-search's 
+       * page-size property).
+       */
+      resultsPerPage: {
+        type: Number,
+        value: 10
+      },
+      /**
+       * Number of total pages of results from current elasticsearch query.
+       */
+      _numPages: {
+        type: Number,
+        notify: true,
+        computed: '_calcNumPages(numResults, resultsPerPage)'
+      },
+      /**
+       * Pages array displayed in dropdown.
+       */
+      _pages: {
+        type: Array,
+        value: function() {
+          return [];
+        },
+        notify: true
+      },
+      /**
+       * True if there is more than one page and therefore a need to 
+       * display pages in a dropdown. 
+       */
+      _hasPages: {
+        type: Boolean,
+        notify: true,
+        computed: '_displayPages(_numPages)'
+      }
+
+    },
+    /**
+     * Computes value of hasPages property.
+     * @return {Boolean} value for hasPages
+     */
+    _displayPages: function() {
+      return this._numPages > 1;
+    },
+    /**
+     * Computes value of numPages property when numResults or 
+     * resultsPerPage changes.
+     * @return {Number} value for numPages
+     */    
+    _calcNumPages: function(numResults, resultsPerPage) {
+      if(this.currentPage !== 1) {
+        this.currentPage = 1;
+      }
+      this._createPageArray(Math.ceil(numResults / resultsPerPage));
+      return Math.ceil(numResults / resultsPerPage); 
+    },
+    /**
+     * When numResults and resultsPerPage change, recompute pages array. 
+     */
+    _createPageArray: function(numPages) {
+      if(this._pages.length > 0) {
+        this._pages = [];
+      }
+
+      for(var i = this.currentPage; i <= numPages; i++) {
+        this.push('_pages', i);
+      }
+    }
+
+
+  });
+
+</script>

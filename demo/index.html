@@ -1,0 +1,55 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>pagination-dropdown Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../elastic-client/elastic-client.html">
+    <link rel="import" href="../../elastic-client-search/elastic-client-search.html">
+    <link rel="import" href="../pagination-dropdown.html">
+  </head>
+  <body unresolved>
+    <template id="app" is="dom-bind">
+      <p>An example of <code>&lt;pagination-dropdown&gt;</code>:</p>
+
+      <elastic-client
+        config='{"host": "http://localhost:9200"}'
+        client="{{esclient}}"
+        cluster-status="{{my-status}}">
+      </elastic-client>
+    
+      <elastic-client-search
+        client="[[esclient]]"
+        index="mockads"
+        query="null"
+        results="{{data}}"
+        lastError="{{error}}"
+        result-count="{{resultCount}}"
+        page="{{pageNum}}"
+        page-size="{{pageSize}}">
+      </elastic-client-search>
+
+      <pagination-dropdown current-page="{{pageNum}}" 
+        num-results="{{resultCount}}" 
+        results-per-page="{{pageSize}}">
+      </pagination-dropdown>
+      
+      <h4>{{data.hits.total}} results:</h4>
+      <ul>
+        <template is="dom-repeat" items="{{data.hits.hits}}" as="item">
+          <li>Record Title: {{item._source.title}}</li>
+        </template>
+      </ul>
+    </template>
+  </body>
+</html>

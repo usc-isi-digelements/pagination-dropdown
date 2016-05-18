@@ -1,0 +1,37 @@
+{
+  "name": "pagination-dropdown",
+  "version": "1.0.0",
+  "authors": [
+    "Rachel Artiss"
+  ],
+  "description": "An element providing a way to page through elasticsearch results. Works with elastic-search-client.",
+  "keywords": [
+    "Elasticsearch",
+    "elastic",
+    "web-component",
+    "polymer"
+  ],
+  "main": "pagination-dropdown.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/DigElements/pagination-dropdown/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.2.1",
+    "paper-menu": "PolymerElements/paper-menu#^1.2.2",
+    "paper-item": "PolymerElements/paper-item#^1.2.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*",
+    "elastic.js": "^1.2.0",
+    "elastic-client": "DigElements/elastic-client#~0.0.2",
+    "elastic-client-search": "DigElements/elastic-client-search"
+  },
+  "resolutions": {
+    "lodash": "^4.6.1"
+  }
+}
