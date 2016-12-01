@@ -31,9 +31,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('pagination-dropdown tests if results/pages exist', function() {
         var element;
 
-        setup(function() {
+        setup(function(done) {
           element = fixture('page-dropdown-fixture');
           element.numResults = 50;
+          flush(function() {
+            done();
+          });
         });
 
         test('currentPage set to default value', function() {
@@ -64,6 +67,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('_hasPages will be true', function() {
           assert.equal(element._hasPages, true);
+          assert.isNotNull(element.$$('label'));
+          assert.isNotNull(element.$$('paper-dropdown-menu'));
         });
 
         test('if resultsPerPage is updated, _numPages and _pages array will be recalculated and currentPage reset to 1', function() {
@@ -89,9 +94,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('pagination-dropdown tests if no results/pages exist', function() {
         var element;
 
-        setup(function() {
+        setup(function(done) {
           element = fixture('page-dropdown-fixture');
           element.numResults = 0;
+          flush(function() {
+            done();
+          });
         });
 
         test('currentPage set to default value', function() {
@@ -121,6 +129,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('_hasPages will be false', function() {
           assert.equal(element._hasPages, false);
+          assert.isNull(element.$$('label'));
+          assert.isNull(element.$$('paper-dropdown-menu'));
         });
 
       });
