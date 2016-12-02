@@ -73,10 +73,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.isNotNull(element.$$('paper-menu'));
           assert.equal(element.$$('paper-menu').selected, element.currentPage);
           assert.equal(element.$$('paper-menu').attrForSelected, 'value');
-          assert.isNotNull(element.querySelectorAll('paper-item'));
-          assert.equal(element.querySelectorAll('paper-item').length, 5);
-          assert.equal(element.querySelectorAll('paper-item')[0].value, 1);
-          assert.equal(element.querySelectorAll('paper-item')[4].value, 5);
+          assert.isNotNull(Polymer.dom(element.root).querySelectorAll('paper-item'));
+          assert.equal(Polymer.dom(element.root).querySelectorAll('paper-item').length, 5);
+          assert.equal(Polymer.dom(element.root).querySelectorAll('paper-item')[0].value, 1);
+          assert.equal(Polymer.dom(element.root).querySelectorAll('paper-item')[4].value, 5);
         });
 
         test('if resultsPerPage is updated, _numPages and _pages array will be recalculated and currentPage reset to 1', function() {
