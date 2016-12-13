@@ -1,15 +1,15 @@
 {
   "name": "pagination-dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
-    "Rachel Artiss"
+    "Next Century Corporation"
   ],
-  "description": "An element providing a way to page through elasticsearch results. Works with elastic-search-client.",
+  "description": "A Polymer Element providing a way to page through elasticsearch results.",
   "keywords": [
-    "Elasticsearch",
-    "elastic",
     "web-component",
-    "polymer"
+    "polymer",
+    "elastic",
+    "elasticsearch"
   ],
   "main": "pagination-dropdown.html",
   "license": "http://polymer.github.io/LICENSE.txt",
@@ -19,19 +19,16 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0",
-    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.2.1",
-    "paper-menu": "PolymerElements/paper-menu#^1.2.2",
-    "paper-item": "PolymerElements/paper-item#^1.2.1"
+    "polymer": "Polymer/polymer#^1.7.0",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "web-component-tester": "*",
-    "elastic.js": "^1.2.0",
-    "elastic-client": "DigElements/elastic-client#~0.0.2",
-    "elastic-client-search": "DigElements/elastic-client-search"
+    "elastic-client": "DigElements/elastic-client#^1.0.3",
+    "elastic-client-search": "DigElements/elastic-client-search#^1.0.17",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
+    "web-component-tester": "^5.0.0"
   },
   "resolutions": {
-    "lodash": "^4.6.1"
+    "lodash": "~4.17.2"
   }
 }

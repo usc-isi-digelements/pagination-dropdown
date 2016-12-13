@@ -1,44 +1,36 @@
 # pagination-dropdown
 
-An element providing a way to page through elasticsearch results. Works with 
-elastic-client-search. 
+A Polymer Element providing a way to page through elasticsearch results.
 
-Example:
+### Example
 ```html
-    <template is="dom-bind">
-        <elastic-client
-            config='{"host": "http://localhost:9200"}'
-            client="{{esclient}}"
-            cluster-status="{{my-status}}">
-        </elastic-client>
-        
-        <elastic-client-search
-            client="[[esclient]]"
-            index="mockads"
-            query="null"
-            results="{{data}}"
-            lastError="{{error}}"
-            page="{{pageNum}}"
-            page-size="{{pageSize}}">
-        </elastic-client-search>
-
-        <pagination-dropdown current-page="{{pageNum}}" 
-            num-results="{{resultCount}}" 
-            results-per-page="{{pageSize}}">
-        </pagination-dropdown>
-    </template>
+<pagination-dropdown
+  current-page="{{pageNum}}" 
+  num-results="{{resultCount}}" 
+  results-per-page="{{pageSize}}">
+</pagination-dropdown>
 ```
 
-## Dependencies
+### Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+Dependencies are installed using [Bower](http://bower.io/):
 
     npm install -g bower
-
-Then, go ahead and download the element's dependencies:
-
     bower install
 
-To run the demo + unit tests, you will need a local elasticsearch instance and the 
-mockads data referenced in the elastic-client-search repo.
+### Testing
+
+Tests require a local instance of elasticsearch with the `mockads` index created by running `data/import_test_data.sh`.
+
+Tests are run using [web-component-tester](https://github.com/Polymer/web-component-tester):
+
+    npm install -g web-component-tester
+    wct
+
+### Demonstration & Documentation
+
+Demonstration and documentation are viewed using [polyserve](https://github.com/PolymerLabs/polyserve):
+
+    npm install -g polyserve
+    polyserve
+
