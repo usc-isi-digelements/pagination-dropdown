@@ -12,7 +12,7 @@
   ],
   "main": "pagination-dropdown.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/DigElements/pagination-dropdown/",
+  "homepage": "https://github.com/usc-isi-digelements/pagination-dropdown/",
   "ignore": [
     "/.*",
     "/test/"
@@ -22,8 +22,8 @@
     "paper-elements": "PolymerElements/paper-elements#^1.0.7"
   },
   "devDependencies": {
-    "elastic-client": "DigElements/elastic-client#^1.0.3",
-    "elastic-client-search": "DigElements/elastic-client-search#^1.0.17",
+    "elastic-client": "usc-isi-digelements/elastic-client#^1.0.3",
+    "elastic-client-search": "usc-isi-digelements/elastic-client-search#^1.0.17",
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
     "web-component-tester": "^5.0.0"
   },
